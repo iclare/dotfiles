@@ -1,1 +1,2 @@
 shell/.ssh/config
+shell/.ssh/id_rsa

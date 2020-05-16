@@ -2,3 +2,4 @@
 /.blackbox/pubring.kbx~
 /.blackbox/secring.gpg
 /shell/.ssh/config
+/shell/.ssh/id_rsa
