@@ -1,0 +1,15 @@
+alias clip='nc -U ~/.clipper.sock'
+alias d='hash -d'
+alias e=exit
+alias g=git
+alias g.='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
+alias j=jump
+alias l='ls -la'
+alias prettyjson='python -m json.tool'
+alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
+alias t=tmux
+alias v=vim
+
+if command -v nvim &> /dev/null; then
+  alias vim=nvim # Use `\vim` or `command vim` to get the real vim.
+fi

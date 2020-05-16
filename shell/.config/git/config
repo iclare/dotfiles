@@ -1,0 +1,10 @@
+[user]
+	name = Ian Clare
+	email = iandillonclare@gmail.com
+	signingkey = 215201C0C90D5A87DC0598824B5244FF0C1CF2FD
+[github]
+	user = iclare
+[color "status"]
+	untracked = blue
+[commit]
+	gpgsign = true
