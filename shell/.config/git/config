@@ -1,10 +1,82 @@
+[branch]
+	autosetupmerge = always
+	autosetuprebase = local
+
+[branch "master"]
+	rebase = true
+
+[color]
+	ui = auto
+
+[color "diff-highlight"]
+	newhighlight = reverse
+	newreset = noreverse
+	oldhighlight = reverse
+	oldreset = noreverse
+
+[color "interactive"]
+	prompt = blue reverse
+
+[color "status"]
+	untracked = blue
+
+[commit]
+	gpgsign = true
+
+[core]
+	# S = chop long lines
+	pager = less -S
+
+[diff]
+	algorithm = histogram
+	compactionHeuristic = true
+
+[difftool]
+	prompt = false
+
+[github]
+	username = iclare
+
+[grep]
+	lineNumber = true
+
+[help]
+	autocorrect = 2
+
+[interactive]
+	diffFilter = diff-highlight
+
+[log]
+	decorate = short
+
+[merge]
+	conflictStyle = diff3
+	log = 1000
+
+[pager]
+	diff = ~/.zsh/bin/diff-highlight | menos -iFMRSX --pattern='^(commit|diff)'
+	log = ~/.zsh/bin/diff-highlight | menos -iFMRSX --pattern='^(commit|diff)'
+	show = ~/.zsh/bin/diff-highlight | menos -iFMRSX --pattern='^(commit|diff)'
+	show-branch = true
+	status = true
+	whatchanged = ~/.zsh/bin/diff-highlight | menos -iFMRSX --pattern='^(commit|diff)'
+
+[rebase]
+	autosquash = true
+
+[rerere]
+	enabled = true
+
+[status]
+	submodulesummary = true
+
+[submodule]
+	fetchJobs = 4
+
 [user]
 	name = Ian Clare
 	email = iandillonclare@gmail.com
 	signingkey = 215201C0C90D5A87DC0598824B5244FF0C1CF2FD
-[github]
-	user = iclare
-[color "status"]
-	untracked = blue
-[commit]
-	gpgsign = true
+
+[include]
+	path = .gitconfig.local
