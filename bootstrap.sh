@@ -17,6 +17,7 @@ case "$_uname" in
     brew cask install kitty
     brew tap homebrew/cask-fonts
     brew cask install font-jetbrains-mono
+    brew cask install spectacle
     stow -v -R -t ~ gui
 
     brew install neovim
@@ -27,6 +28,11 @@ case "$_uname" in
     brew install clipper
     brew install tree
     stow -v -R -t ~ shell
+
+    defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+    defaults write NSGlobalDomain KeyRepeat -int 2
+    defaults write NSGlobalDomain InitialKeyRepeat -int 12
+    defaults -currentHost write NSGlobalDomain AppleFontSmoothing -int 0
     ;;
   *)
     git clone https://github.com/fsquillace/junest.git ~/.local/share/junest
