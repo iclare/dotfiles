@@ -293,6 +293,7 @@ bindkey '^Z' fg-bg
 source $HOME/.zsh/aliases
 source $HOME/.zsh/colors
 source $HOME/.zsh/functions
+source $HOME/.zsh/exports
 
 # turn off flow control (prevent CTRL-S from capturing all output)
 stty -ixon
