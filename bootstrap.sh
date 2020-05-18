@@ -20,12 +20,12 @@ case "$_uname" in
     brew cask install spectacle
     stow -v -R -t ~ gui
 
-    brew install neovim
-    brew install fzf
-    brew install ripgrep
-    brew install fd
-    brew install tmux
     brew install clipper
+    brew install fd
+    brew install fzf
+    brew install neovim
+    brew install ripgrep
+    brew install tmux
     brew install tree
     stow -v -R -t ~ shell
 
@@ -33,10 +33,10 @@ case "$_uname" in
     tic -o ~/share/terminfo terminfo/tmux.terminfo
     tic -o ~/share/terminfo terminfo/xterm-256color.terminfo
 
-    defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-    defaults write NSGlobalDomain KeyRepeat -int 2
-    defaults write NSGlobalDomain InitialKeyRepeat -int 12
     defaults -currentHost write NSGlobalDomain AppleFontSmoothing -int 0
+    defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+    defaults write NSGlobalDomain InitialKeyRepeat -int 12
+    defaults write NSGlobalDomain KeyRepeat -int 2
 
     ;;
   *)

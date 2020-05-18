@@ -444,9 +444,4 @@ zstyle ':chpwd:*' recent-dirs-default true
 # Third-party
 #
 
-# TODO
 
-# FZF
-
-# test -e "$HOME/.zsh/skim/shell/key-bindings.zsh" && source "$HOME/.zsh/skim/shell/key-bindings.zsh"
-# test -e "$HOME/.zsh/skim/shell/completion.zsh" && source "$HOME/.zsh/skim/shell/completion.zsh"
