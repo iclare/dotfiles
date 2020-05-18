@@ -29,10 +29,15 @@ case "$_uname" in
     brew install tree
     stow -v -R -t ~ shell
 
+    tic -o ~/share/terminfo terminfo/tmux-256color.terminfo
+    tic -o ~/share/terminfo terminfo/tmux.terminfo
+    tic -o ~/share/terminfo terminfo/xterm-256color.terminfo
+
     defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
     defaults write NSGlobalDomain KeyRepeat -int 2
     defaults write NSGlobalDomain InitialKeyRepeat -int 12
     defaults -currentHost write NSGlobalDomain AppleFontSmoothing -int 0
+
     ;;
   *)
     git clone https://github.com/fsquillace/junest.git ~/.local/share/junest
