@@ -31,7 +31,6 @@ else
   set backupdir=~/.config/nvim/tmp/backup  " keep backup files out of the way
   set backupdir+=.
 endif
-
 set belloff=all                       " never ring the bell for any reason
 
 " Highlight up to 255 columns
@@ -78,7 +77,6 @@ set laststatus=2                      " always show status line
 set lazyredraw                        " don't bother updating screen during macro playback
 
 set linebreak                         " wrap long lines at characters in 'breakat'
-
 
 set list                              " show whitespace
 set listchars=nbsp:⦸                  " CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
@@ -144,8 +142,8 @@ set updatetime=2000                   " CursorHold interval
 
 let s:viminfo='main.shada'
 if exists('$SUDO_USER')
-    " Don't create root-owned files.
-    execute 'set ' . s:viminfo . '='
+  " Don't create root-owned files.
+  execute 'set ' . s:viminfo . '='
 else
   " Our overrides:
   " - '0 store marks for 0 files
@@ -171,22 +169,9 @@ set wildignore+=*.o                   " patterns to ignore during file-navigatio
 set wildmenu                          " show options as list when switching buffers etc
 set wildmode=longest:full,full        " shell-like autocomplete to unambiguous portion
 
-" Don't need this in xterm-256color, but do need it inside tmux.
-" (See `:h xterm-true-color`.)
-if &term =~# 'tmux-256color'
-  let &t_8f="\e[38;2;%ld;%ld;%ldm"
-  let &t_8b="\e[48;2;%ld;%ld;%ldm"
-endif
-
-" }}}
-
-
-
 "
-" Functions {{{
-"
-
 " }}}
+"
 
 "
 " Mappings {{{
@@ -226,7 +211,9 @@ xnoremap <C-l> <C-w>l
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
 
+"
 " }}}
+"
 
 "
 " Autocmds {{{
@@ -253,15 +240,45 @@ endfunction
 
 call s:IclareAutocmds()
 
+"
 "}}}
-
-
+"
 
 "
 " Plug {{{
 "
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'chriskempson/base16-vim'
+Plug 'wincent/loupe'
+Plug 'wincent/terminus'
 call plug#end()
 
+"
 "}}}
+"
+
+"
+" base16-vim {{{
+"
+
+let s:basesixteenshell = readfile(expand('~/.base16'), '', 2)
+execute 'set background=' . s:basesixteenshell[1]
+execute 'colorscheme base16-' . s:basesixteenshell[0]
+
+hi Normal guibg=NONE ctermbg=NONE
+
+"
+"}}}
+"
+
+"
+" loupe {{{
+"
+
+nmap <leader>n <Plug>(LoupeClearHighlight)
+
+"
+"}}}
+"
+
