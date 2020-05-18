@@ -298,6 +298,7 @@ source $HOME/.zsh/exports
 stty -ixon
 
 export PATH=$PATH:$HOME/.zsh/bin
+export PATH="/usr/local/sbin:$PATH"
 
 #
 # Hooks
@@ -450,3 +451,6 @@ if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
 fi
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+# pyenv
+eval "$(pyenv init -)"

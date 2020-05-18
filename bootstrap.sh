@@ -8,6 +8,8 @@ _uname="$(uname)"
 
 case "$_uname" in
   Darwin)
+    brew update
+
     brew cask install gpg-suite
     brew install blackbox
     blackbox_decrypt_all_files
@@ -21,12 +23,15 @@ case "$_uname" in
     stow -v -R -t ~ gui
 
     brew install clipper
+    brew services start clipper
     brew install fd
     brew install fzf
     brew install neovim
     brew install ripgrep
     brew install tmux
     brew install tree
+    brew tap beeftornado/rmtree
+    brew install pyenv
     stow -v -R -t ~ shell
 
     tic -o ~/share/terminfo terminfo/tmux-256color.terminfo
@@ -37,6 +42,13 @@ case "$_uname" in
     defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
     defaults write NSGlobalDomain InitialKeyRepeat -int 12
     defaults write NSGlobalDomain KeyRepeat -int 2
+
+    # pyenv install x
+    # pyenv global x
+    # exit
+    # zsh
+    # pip install --upgrade pip
+    # pip install pynvim
 
     ;;
   *)
