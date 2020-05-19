@@ -18,7 +18,7 @@ case "$_uname" in
 
     brew cask install kitty
     brew tap homebrew/cask-fonts
-    brew cask install font-jetbrains-mono
+    brew cask install font-jetbrainsmono-nerd-font
     brew cask install spectacle
     stow -v -R -t ~ gui
 
