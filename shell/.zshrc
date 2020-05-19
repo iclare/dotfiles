@@ -454,3 +454,6 @@ source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
 # pyenv
 eval "$(pyenv init -)"
+
+# nodenv
+eval "$(nodenv init -)"

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "coc-git": ">=1.7.13",
+    "coc-highlight": ">=1.2.5",
+    "coc-json": ">=1.2.6",
+    "coc-vimlsp": ">=0.8.0"
+  }
+}

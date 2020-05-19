@@ -32,6 +32,8 @@ case "$_uname" in
     brew install tree
     brew tap beeftornado/rmtree
     brew install pyenv
+    brew install nodenv
+    brew install watchman
     stow -v -R -t ~ shell
 
     tic -o ~/share/terminfo terminfo/tmux-256color.terminfo
@@ -45,10 +47,21 @@ case "$_uname" in
 
     # pyenv install x
     # pyenv global x
-    # exit
-    # zsh
+    # source ~/.zshrc
     # pip install --upgrade pip
+    # pip install wheel
     # pip install pynvim
+
+    # nodenv install x
+    # nodenv global x
+    # npm install -g yarn
+    # source ~/.zshrc
+
+    # vim
+    # :CocInstall coc-git
+    # :CocInstall coc-highlight
+    # :CocInstall coc-json
+    # :CocInstall coc-vimlsp
 
     ;;
   *)
