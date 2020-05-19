@@ -256,6 +256,7 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 "
@@ -298,6 +299,8 @@ nmap <leader>n <Plug>(LoupeClearHighlight)
 set noshowmode
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#coc#enabled = 1
+let g:airline_highlighting_cache = 1
+let g:airline_extensions = []
 
 "
 "}}}
@@ -466,7 +469,7 @@ nmap ]g <Plug>(coc-git-nextchunk)
 " show chunk diff at current position
 nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
-nmap gc <Plug>(coc-git-commit)
+nmap gC <Plug>(coc-git-commit)
 
 "
 " }}}
