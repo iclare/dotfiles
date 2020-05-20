@@ -61,14 +61,12 @@ case "$_uname" in
     # brew install shellcheck
     # pip install vim-vint
 
-    # vim
-    # :CocInstall coc-sh
-    # :CocInstall coc-highlight
-    # :CocInstall coc-git
-    # :CocInstall coc-diagnostic
-    # :CocInstall coc-vimlsp
-    # :CocInstall coc-rust-analyzer
-    # :CocInstall coc-json
+    # cat shell/.config/coc/extensions/package.json |
+    # python -c '
+    # import sys, json
+    # extensions = json.load(sys.stdin)["dependencies"].keys()
+    # print("nvim -c \"CocInstall " + " ".join(extensions) + "\"")
+    # ' | bash
 
     ;;
   *)

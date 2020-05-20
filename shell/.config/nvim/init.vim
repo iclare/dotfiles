@@ -438,4 +438,10 @@ nmap gs <Plug>(coc-git-chunkinfo)
 nmap gC <Plug>(coc-git-commit)
 
 " }}}
+" vim-clipper
+" {{{
+
+call clipper#set_invocation('nc -U ~/.clipper.sock')
+
+" }}}
 " vim:fileencoding=utf-8:foldmethod=marker
