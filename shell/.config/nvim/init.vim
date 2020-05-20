@@ -24,6 +24,8 @@ endif
 set autoindent                        " maintain indent of current line
 set backspace=indent,start,eol        " allow unrestricted backspacing in insert mode
 
+let g:loaded_matchparen=1             " Don't need this annoyance when linting
+
 if exists('$SUDO_USER')
   set nobackup                        " don't create root-owned files
   set nowritebackup                   " don't create root-owned files
