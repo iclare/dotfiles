@@ -2,5 +2,6 @@
   "diagnostic-languageserver.filetypes": {
     "vim": "vint",
     "sh": "shellcheck"
-  }
+  },
+  "session.directory": "~/.config/coc/sessions"
 }

@@ -423,11 +423,15 @@ nnoremap <silent> <space>P  :<C-u>CocListResume<CR>
 " To get correct comment highlighting in json
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
+"
 " coc-highlight
+"
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+"
 " coc-git
+"
 
 " navigate chunks of current buffer
 nmap [g <Plug>(coc-git-prevchunk)
@@ -436,6 +440,89 @@ nmap ]g <Plug>(coc-git-nextchunk)
 nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap gC <Plug>(coc-git-commit)
+
+" coc-yank
+
+nnoremap <silent> <space>Y  :<C-u>CocList -A --normal yank<cr>
+
+"
+" coc-lists
+"
+
+" easier grep
+" grep word under cursor
+command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+function! s:GrepArgs(...)
+  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
+        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
+  return join(list, "\n")
+endfunction
+" Keymapping for grep word under cursor with interactive mode
+nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
+
+" grep by motion
+vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+function! s:GrepFromSelected(type)
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  execute 'CocList grep '.word
+endfunction
+
+" grep current word in current buffer
+nnoremap <silent> <space>W  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+
+"
+" coc-snippets
+"
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+"
+" coc-actions
+"
+
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " }}}
 " vim-clipper
