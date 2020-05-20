@@ -257,10 +257,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
+Plug 'wincent/vim-clipper'
 call plug#end()
 
 "
-"}}}
+" }}}
 "
 
 "
@@ -279,7 +280,7 @@ augroup CursorLineOnlyInActiveWindow
 augroup END
 
 "
-"}}}
+" }}}
 "
 
 "
@@ -289,7 +290,7 @@ augroup END
 nmap <leader>n <Plug>(LoupeClearHighlight)
 
 "
-"}}}
+" }}}
 "
 
 "
@@ -303,7 +304,7 @@ let g:airline_highlighting_cache = 1
 let g:airline_extensions = []
 
 "
-"}}}
+" }}}
 "
 
 "

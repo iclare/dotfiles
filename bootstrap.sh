@@ -50,6 +50,7 @@ case "$_uname" in
     # source ~/.zshrc
     # pip install --upgrade pip
     # pip install wheel
+    # pip install pip-autoremove
     # pip install pynvim
 
     # nodenv install x
@@ -57,11 +58,17 @@ case "$_uname" in
     # npm install -g yarn
     # source ~/.zshrc
 
+    # brew install shellcheck
+    # pip install vim-vint
+
     # vim
-    # :CocInstall coc-git
+    # :CocInstall coc-sh
     # :CocInstall coc-highlight
-    # :CocInstall coc-json
+    # :CocInstall coc-git
+    # :CocInstall coc-diagnostic
     # :CocInstall coc-vimlsp
+    # :CocInstall coc-rust-analyzer
+    # :CocInstall coc-json
 
     ;;
   *)
