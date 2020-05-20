@@ -1,4 +1,5 @@
-" vim:fileencoding=utf-8:foldmethod=marker
+" Settings
+" {{{
 
 filetype indent plugin on
 syntax on
@@ -16,10 +17,6 @@ let s:vimrc_local=$HOME . '/.config/nvim/init.vim.local'
 if filereadable(s:vimrc_local)
   execute 'source ' . s:vimrc_local
 endif
-
-"
-" Settings {{{
-"
 
 set autoindent                        " maintain indent of current line
 set backspace=indent,start,eol        " allow unrestricted backspacing in insert mode
@@ -171,13 +168,9 @@ set wildignore+=*.o                   " patterns to ignore during file-navigatio
 set wildmenu                          " show options as list when switching buffers etc
 set wildmode=longest:full,full        " shell-like autocomplete to unambiguous portion
 
-"
 " }}}
-"
-
-"
-" Mappings {{{
-"
+" Mappings
+" {{{
 
 let mapleader="\<Space>"
 let maplocalleader="\\"
@@ -213,13 +206,9 @@ xnoremap <C-l> <C-w>l
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
 
-"
 " }}}
-"
-
-"
-" Autocmds {{{
-"
+" Autocmds
+" {{{
 
 function! s:IclareAutocmds()
   augroup IclareAutocmds
@@ -242,33 +231,33 @@ endfunction
 
 call s:IclareAutocmds()
 
-"
-"}}}
-"
-
-"
-" Plug {{{
-"
+" }}}
+" Plug
+" {{{
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'chriskempson/base16-vim'
-Plug 'wincent/loupe'
-Plug 'wincent/terminus'
+Plug 'kshenoy/vim-signature'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
+Plug 'wincent/loupe'
+Plug 'wincent/terminus'
 Plug 'wincent/vim-clipper'
 call plug#end()
 
-"
 " }}}
-"
+" airline.vim
+" {{{
 
-"
-" base16-vim {{{
-"
+set noshowmode
+let g:airline_powerline_fonts = 1
+
+" }}}
+" base16-vim
+" {{{
 
 let s:basesixteenshell = readfile(expand('~/.base16'), '', 2)
 execute 'set background=' . s:basesixteenshell[1]
@@ -281,37 +270,16 @@ augroup CursorLineOnlyInActiveWindow
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
-"
-" }}}
-"
 
-"
-" loupe {{{
-"
+" }}}
+" loupe
+" {{{
 
 nmap <leader>n <Plug>(LoupeClearHighlight)
 
-"
 " }}}
-"
-
-"
-" vim-airline {{{
-"
-
-set noshowmode
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#coc#enabled = 1
-let g:airline_highlighting_cache = 1
-let g:airline_extensions = []
-
-"
-" }}}
-"
-
-"
-" coc.nvim {{{
-"
+" coc.nvim
+" {{{
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -391,7 +359,7 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-augroup mygroup
+augroup auformat
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType sh,vim setl formatexpr=CocAction('formatSelected')
@@ -434,11 +402,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 " Mappings using CoCList:
 " Show all diagnostics.
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -474,6 +437,5 @@ nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap gC <Plug>(coc-git-commit)
 
-"
 " }}}
-"
+" vim:fileencoding=utf-8:foldmethod=marker
