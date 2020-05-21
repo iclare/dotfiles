@@ -3,5 +3,6 @@
     "vim": "vint",
     "sh": "shellcheck"
   },
-  "session.directory": "~/.config/coc/sessions"
+  "session.directory": "~/.config/coc/sessions",
+  "explorer.icon.enableNerdfont": true
 }

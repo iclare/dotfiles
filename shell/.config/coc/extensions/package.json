@@ -2,6 +2,7 @@
   "dependencies": {
     "coc-actions": ">=1.4.0",
     "coc-diagnostic": ">=0.2.8",
+    "coc-explorer": ">=0.7.5",
     "coc-git": ">=1.7.13",
     "coc-highlight": ">=1.2.5",
     "coc-json": ">=1.2.6",
@@ -12,6 +13,7 @@
     "coc-sh": ">=0.4.0",
     "coc-snippets": ">=2.1.26",
     "coc-vimlsp": ">=0.8.0",
+    "coc-yaml": ">=1.0.4",
     "coc-yank": ">=1.1.4"
   }
 }

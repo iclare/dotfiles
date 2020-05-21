@@ -90,7 +90,7 @@ set number                            " show line numbers in gutter
 
 set relativenumber                    " show relative numbers in gutter
 
-set scrolloff=3                       " start scrolling 3 lines before edge of viewport
+set scrolloff=5                       " start scrolling 5 lines before edge of viewport
 set shell=sh                          " shell to use for `!`, `:!`, `system()` etc.
 set noshiftround                      " don't always indent by multiple of shiftwidth
 set shiftwidth=2                      " spaces per tab (when shifting)
@@ -109,7 +109,7 @@ let &showbreak='↳ '                   " DOWNWARDS ARROW WITH TIP RIGHTWARDS (U
 set noshowcmd                         " don't show extra info at end of command line
 
 set sidescroll=0                      " sidescroll in jumps because terminals are slow
-set sidescrolloff=3                   " same as scrolloff, but for columns
+set sidescrolloff=5                   " same as scrolloff, but for columns
 set smarttab                          " <tab>/<BS> indent/dedent in leading whitespace
 
 set softtabstop=-1                    " use 'shiftwidth' for tab/bs at end of line
@@ -236,17 +236,71 @@ call s:IclareAutocmds()
 " {{{
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'AndrewRadev/dsf.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'Shougo/context_filetype.vim'
+Plug 'Yggdroot/indentLine'
 Plug 'chriskempson/base16-vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'honza/vim-snippets'
+Plug 'junegunn/vim-easy-align'
+Plug 'justinmk/vim-sneak'
+Plug 'kana/vim-operator-replace'
+Plug 'kana/vim-operator-user'
+Plug 'kana/vim-repeat'
+Plug 'kana/vim-textobj-user'
 Plug 'kshenoy/vim-signature'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'liuchengxu/vista.vim'
+Plug 'machakann/vim-sandwich'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-commentary'
+Plug 'psliwka/vim-smoothie'
+Plug 'simnalamburt/vim-mundo'
+Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-fugitive'
+Plug 'tyru/caw.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wincent/loupe'
+Plug 'wincent/replay'
 Plug 'wincent/terminus'
 Plug 'wincent/vim-clipper'
 call plug#end()
+
+" }}}
+" vista.vim
+" {{{
+
+" How each level is indented and what to prepend.
+" This could make the display more compact or more spacious.
+" e.g., more compact: ["▸ ", ""]
+" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" Executive used when opening vista sidebar without specifying it.
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'coc'
+
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+let g:vista_fzf_preview = ['right:50%']
+
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+
+nnoremap <leader>o :Vista!!<CR>
+
+" }}}
+" editorconfig-vim
+" {{{
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" }}}
+" indentLine
+" {{{
+
+let g:indentLine_char = '⎸'
 
 " }}}
 " airline.vim
@@ -379,14 +433,14 @@ nmap <leader>Qf  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
+xmap iF <Plug>(coc-funcobj-i)
+omap iF <Plug>(coc-funcobj-i)
+xmap aF <Plug>(coc-funcobj-a)
+omap aF <Plug>(coc-funcobj-a)
+xmap iC <Plug>(coc-classobj-i)
+omap iC <Plug>(coc-classobj-i)
+xmap aC <Plug>(coc-classobj-a)
+omap aC <Plug>(coc-classobj-a)
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
@@ -423,15 +477,15 @@ nnoremap <silent> <space>P  :<C-u>CocListResume<CR>
 " To get correct comment highlighting in json
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
-"
+" }}}
 " coc-highlight
-"
+" {{{
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-"
+" }}}
 " coc-git
-"
+" {{{
 
 " navigate chunks of current buffer
 nmap [g <Plug>(coc-git-prevchunk)
@@ -441,13 +495,15 @@ nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap gC <Plug>(coc-git-commit)
 
+" }}}
 " coc-yank
+" {{{
 
 nnoremap <silent> <space>Y  :<C-u>CocList -A --normal yank<cr>
 
-"
+" }}}
 " coc-lists
-"
+" {{{
 
 " easier grep
 " grep word under cursor
@@ -481,9 +537,9 @@ endfunction
 " grep current word in current buffer
 nnoremap <silent> <space>W  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 
-"
+" }}}
 " coc-snippets
-"
+" {{{
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -513,9 +569,9 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
-"
+" }}}
 " coc-actions
-"
+" {{{
 
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
@@ -525,10 +581,87 @@ xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " }}}
+" coc-explorer
+" {{{
+
+map <leader>e :CocCommand explorer<CR>
+
+" }}}
 " vim-clipper
 " {{{
 
 call clipper#set_invocation('nc -U ~/.clipper.sock')
+
+" }}}
+" vim-sandwhich
+" {{{
+
+" like vim-surround
+runtime macros/sandwich/keymap/surround.vim
+let g:sandwich#recipes += [
+      \   {'buns': ['{ ', ' }'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['{']},
+      \   {'buns': ['[ ', ' ]'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['[']},
+      \   {'buns': ['( ', ' )'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['(']},
+      \   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['{']},
+      \   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['[']},
+      \   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['(']},
+      \ ]
+
+" }}}
+" vim-easy-align
+" {{{
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" }}}
+" vim-mundo
+" {{{
+
+nnoremap <leader>u :MundoToggle<CR>
+
+" }}}
+" vim-expand-region
+" {{{
+
+map + <Plug>(expand_region_expand)
+map _ <Plug>(expand_region_shrink)
+
+" }}}
+" vim-operator-replace
+" {{{
+
+map - <Plug>(operator-replace)
+
+" }}}
+" vim-sneak
+" {{{
+
+" }}}
+" vim-sneak
+" {{{
+
+let g:sneak#s_next = 1
+
+" }}}
+" dsf.vim
+" {{{
+
+let g:dsf_no_mappings = 1
+
+nmap dsf <Plug>DsfDelete
+nmap csf <Plug>DsfChange
+
+nmap dsnf <Plug>DsfNextDelete
+nmap csnf <Plug>DsfNextChange
+
+omap af <Plug>DsfTextObjectA
+xmap af <Plug>DsfTextObjectA
+omap if <Plug>DsfTextObjectI
+xmap if <Plug>DsfTextObjectI
 
 " }}}
 " vim:fileencoding=utf-8:foldmethod=marker
