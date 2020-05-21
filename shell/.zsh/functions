@@ -1,3 +1,10 @@
+# Show hidden files by default
+function fd() {
+  emulate -L zsh
+
+  command fd --hidden --exclude '.git' "$@"
+}
+
 # Print headers, following redirects.
 # Based on: https://stackoverflow.com/a/10060342/2103996
 function headers() {

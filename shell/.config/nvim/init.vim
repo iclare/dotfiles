@@ -206,6 +206,24 @@ xnoremap <C-l> <C-w>l
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
 
+function! IclareClearRegisters() abort
+  let l:regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+  for l:reg in l:regs
+    call setreg(l:reg, [])
+  endfor
+endfunction
+nnoremap <Leader>cr :call IclareClearRegisters()<CR>
+
+function! IclareSubstitute(pattern, replacement, flags) abort
+  let l:number=1
+  for l:line in getline(1, '$')
+    call setline(l:number, substitute(l:line, a:pattern, a:replacement, a:flags))
+    let l:number=l:number + 1
+  endfor
+endfunction
+nnoremap <silent> <Leader>zz :call IclareSubstitute('\s\+$', '', '')<CR>
+
+
 " }}}
 " Autocmds
 " {{{
@@ -266,6 +284,12 @@ Plug 'wincent/replay'
 Plug 'wincent/terminus'
 Plug 'wincent/vim-clipper'
 call plug#end()
+
+" }}}
+" vim-clap
+" {{{
+
+nnoremap <leader>t :Clap files --hidden<cr>
 
 " }}}
 " vista.vim
@@ -635,10 +659,6 @@ map _ <Plug>(expand_region_shrink)
 " {{{
 
 map - <Plug>(operator-replace)
-
-" }}}
-" vim-sneak
-" {{{
 
 " }}}
 " vim-sneak
