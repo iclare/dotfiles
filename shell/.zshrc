@@ -467,6 +467,3 @@ eval "$(pyenv init -)"
 
 # nodenv
 eval "$(nodenv init -)"
-
-# Rust
-export PATH="$HOME/.cargo/bin:$PATH"

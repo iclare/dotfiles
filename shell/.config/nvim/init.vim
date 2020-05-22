@@ -244,6 +244,10 @@ function! s:IclareAutocmds()
     " Save/restore folds and cursor position.
     autocmd BufWritePost,BufLeave,WinLeave ?* if iclare#autocmds#should_mkview() | call iclare#autocmds#mkview() | endif
     autocmd BufWinEnter ?* if iclare#autocmds#should_mkview() | silent! loadview | execute 'silent! ' . line('.') . 'foldopen!' | endif
+
+    " Save on focus loss
+    autocmd FocusLost * :wa
+
   augroup END
 endfunction
 
@@ -290,6 +294,8 @@ call plug#end()
 " {{{
 
 nnoremap <leader>t :Clap files --hidden<cr>
+nnoremap <leader>r :Clap grep2 --hidden<cr>
+nnoremap <leader>l :Clap<cr>
 
 " }}}
 " vista.vim
@@ -440,7 +446,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 augroup auformat
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType sh,vim setl formatexpr=CocAction('formatSelected')
+  autocmd FileType sh,vim,rust setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -473,6 +479,7 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
+nnoremap <leader>F :Format<CR>
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -482,21 +489,21 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> <space>A  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <localleader>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent> <space>E  :<C-u>CocList extensions<cr>
+nnoremap <silent> <localleader>e  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent> <space>C  :<C-u>CocList commands<cr>
+nnoremap <silent> <localleader>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent> <space>O  :<C-u>CocList outline<cr>
+nnoremap <silent> <localleader>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent> <space>S  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <localleader>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>J  :<C-u>CocNext<CR>
+nnoremap <silent> <localleader>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>K  :<C-u>CocPrev<CR>
+nnoremap <silent> <localleader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent> <space>P  :<C-u>CocListResume<CR>
+nnoremap <silent> <localleader>p  :<C-u>CocListResume<CR>
 
 " To get correct comment highlighting in json
 autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -609,6 +616,13 @@ nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<C
 " {{{
 
 map <leader>e :CocCommand explorer<CR>
+
+" }}}
+" coc-rust-analyzer
+" {{{
+
+autocmd FileType rust nnoremap <leader>R :CocCommand rust-analyzer.run<CR>
+
 
 " }}}
 " vim-clipper
