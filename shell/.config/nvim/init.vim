@@ -223,7 +223,6 @@ function! IclareSubstitute(pattern, replacement, flags) abort
 endfunction
 nnoremap <silent> <Leader>zz :call IclareSubstitute('\s\+$', '', '')<CR>
 
-
 " }}}
 " Autocmds
 " {{{
@@ -273,6 +272,7 @@ Plug 'kana/vim-repeat'
 Plug 'kana/vim-textobj-user'
 Plug 'kshenoy/vim-signature'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'liuchengxu/vista.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -290,19 +290,21 @@ Plug 'wincent/vim-clipper'
 call plug#end()
 
 " }}}
+" vim-which-key
+" {{{
+
+nnoremap <silent> <leader>      :<c-u>WhichKey       '<Space>'<CR>
+vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey       '\'<CR>
+vnoremap <silent> <localleader> :<c-u>WhichKeyVisual '\'<CR>
+
+" }}}
 " vim-clap
 " {{{
 
-" whichkey <leader>c - commands
-" whichkey <leader>h - help
-" whichkey <leader>l - lists
-" whichkey <leader>m - mru
-" whichkey <leader>r - ripgrep
-" whichkey <leader>t - command-t
-" whichkey <leader>j - jumps
 nnoremap <leader>c :Clap command<cr>
 nnoremap <leader>h :Clap help_tags<cr>
-nnoremap <leader>j :Clap history<cr>
+nnoremap <leader>j :Clap jumps<cr>
 nnoremap <leader>l :Clap<cr>
 nnoremap <leader>m :Clap history<cr>
 nnoremap <leader>r :Clap grep2 --hidden<cr>
@@ -329,7 +331,6 @@ let g:vista_fzf_preview = ['right:50%']
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
 
-" whichkey: <leader>o - outline
 nnoremap <leader>o :Vista!!<CR>
 
 " }}}
@@ -365,7 +366,6 @@ augroup CursorLineOnlyInActiveWindow
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
 augroup END
-
 
 " }}}
 " loupe
@@ -453,7 +453,6 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>F  <Plug>(coc-format-selected)
-nmap <leader>F  <Plug>(coc-format-selected)
 
 augroup auformat
   autocmd!
@@ -471,7 +470,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap keys for applying codeAction to the current line.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>Qf  <Plug>(coc-fix-current)
+nmap <leader>Qf <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -542,43 +541,7 @@ nmap gC <Plug>(coc-git-commit)
 " coc-yank
 " {{{
 
-nnoremap <silent> <space>Y  :<C-u>CocList -A --normal yank<cr>
-
-" }}}
-" coc-lists
-" {{{
-
-" easier grep
-" grep word under cursor
-command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
-function! s:GrepArgs(...)
-  let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
-        \ '-e', '-regex', '-u', '-skip-vcs-ignores', '-t', '-extension']
-  return join(list, "\n")
-endfunction
-" Keymapping for grep word under cursor with interactive mode
-nnoremap <silent> <Leader>cf :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
-
-" grep by motion
-vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
-nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
-function! s:GrepFromSelected(type)
-  let saved_unnamed_register = @@
-  if a:type ==# 'v'
-    normal! `<v`>y
-  elseif a:type ==# 'char'
-    normal! `[v`]y
-  else
-    return
-  endif
-  let word = substitute(@@, '\n$', '', 'g')
-  let word = escape(word, '| ')
-  let @@ = saved_unnamed_register
-  execute 'CocList grep '.word
-endfunction
-
-" grep current word in current buffer
-nnoremap <silent> <space>W  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+nnoremap <silent> <leader>Y  :<C-u>CocList -A --normal yank<cr>
 
 " }}}
 " coc-snippets
@@ -634,7 +597,6 @@ map <leader>e :CocCommand explorer<CR>
 " {{{
 
 autocmd FileType rust nnoremap <leader>R :CocCommand rust-analyzer.run<CR>
-
 
 " }}}
 " vim-clipper
