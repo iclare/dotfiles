@@ -3,6 +3,7 @@ alias d='hash -d'
 alias e=exit
 alias g.='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
 alias g=git
+alias j=z
 alias jd=jump
 alias l='ls -la'
 alias prettyjson='python -m json.tool'

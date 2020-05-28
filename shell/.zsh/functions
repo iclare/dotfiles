@@ -98,7 +98,7 @@ function tmux() {
 }
 
 # Convenience function for jumping to hashed directory aliases
-# (ie. `j rn` -> `jump rn` -> `cd ~rn`).
+# (ie. `jd rn` -> `jump rn` -> `cd ~rn`).
 function jump() {
   emulate -L zsh
 
