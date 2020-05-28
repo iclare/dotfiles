@@ -245,6 +245,9 @@ HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
 # NOTE: must come after select-word-style.
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# zsh-z
+source ~/.zsh/zsh-z/zsh-z.plugin.zsh
+
 #
 # Bindings
 #
@@ -467,3 +470,7 @@ eval "$(pyenv init -)"
 
 # nodenv
 eval "$(nodenv init -)"
+
+# ripgrep
+export RIPGREP_CONFIG_PATH=$HOME/.rgrc
+

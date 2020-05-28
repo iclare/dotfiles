@@ -10,3 +10,6 @@
 [submodule "shell/.zsh/base16-shell"]
 	path = shell/.zsh/base16-shell
 	url = https://github.com/chriskempson/base16-shell.git
+[submodule "shell/.zsh/zsh-z"]
+	path = shell/.zsh/zsh-z
+	url = https://github.com/agkozak/zsh-z.git
