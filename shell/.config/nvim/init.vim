@@ -293,9 +293,20 @@ call plug#end()
 " vim-clap
 " {{{
 
-nnoremap <leader>t :Clap files --hidden<cr>
-nnoremap <leader>r :Clap grep2 --hidden<cr>
+" whichkey <leader>c - commands
+" whichkey <leader>h - help
+" whichkey <leader>l - lists
+" whichkey <leader>m - mru
+" whichkey <leader>r - ripgrep
+" whichkey <leader>t - command-t
+" whichkey <leader>j - jumps
+nnoremap <leader>c :Clap command<cr>
+nnoremap <leader>h :Clap help_tags<cr>
+nnoremap <leader>j :Clap history<cr>
 nnoremap <leader>l :Clap<cr>
+nnoremap <leader>m :Clap history<cr>
+nnoremap <leader>r :Clap grep2 --hidden<cr>
+nnoremap <leader>t :Clap files --hidden<cr>
 
 " }}}
 " vista.vim
@@ -318,6 +329,7 @@ let g:vista_fzf_preview = ['right:50%']
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
 
+" whichkey: <leader>o - outline
 nnoremap <leader>o :Vista!!<CR>
 
 " }}}
