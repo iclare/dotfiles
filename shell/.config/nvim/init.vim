@@ -253,7 +253,7 @@ endfunction
 call s:IclareAutocmds()
 
 " }}}
-" Plug
+" vim-plug
 " {{{
 
 call plug#begin('~/.config/nvim/plugged')
@@ -279,6 +279,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'psliwka/vim-smoothie'
 Plug 'simnalamburt/vim-mundo'
 Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tyru/caw.vim'
 Plug 'vim-airline/vim-airline'
@@ -430,7 +431,7 @@ nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
