@@ -183,11 +183,6 @@ nnoremap <Leader><Leader> <C-^>
 nnoremap <Leader>q :quit<CR>
 nnoremap <Leader>w :write<CR>
 
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <A-b> <S-Left>
-cnoremap <A-f> <S-Right>
-
 nnoremap Q <nop>
 
 noremap Y y$
@@ -315,6 +310,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rsi'
 Plug 'tyru/caw.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
