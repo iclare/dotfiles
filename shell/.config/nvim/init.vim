@@ -223,6 +223,15 @@ function! IclareSubstitute(pattern, replacement, flags) abort
 endfunction
 nnoremap <silent> <Leader>zz :call IclareSubstitute('\s\+$', '', '')<CR>
 
+" Show current file path
+nnoremap <Leader>p :echo expand('%')<CR>
+
+" Close all but the current window
+nnoremap <Leader>o :only<CR>
+
+" Edit an adjacent file
+nnoremap <LocalLeader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
+
 " }}}
 " Autocmds
 " {{{
@@ -289,6 +298,17 @@ Plug 'wincent/replay'
 Plug 'wincent/terminus'
 Plug 'wincent/vim-clipper'
 call plug#end()
+
+" }}}
+" vim-fugitive
+" {{{
+
+" show diff view
+nnoremap <silent> <LocalLeader>dd :Gvdiffsplit!<CR>
+" choose hunk from left
+" choose hunk from right
+nnoremap <silent> <LocalLeader>dh :diffget //2<CR>
+nnoremap <silent> <LocalLeader>dl :diffget //3<CR>
 
 " }}}
 " vim-which-key
@@ -500,10 +520,10 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Mappings using CoCList:
+" Show all lists
+nnoremap <silent> <localleader>a  :<C-u>CocList<cr>
 " Show all diagnostics.
-nnoremap <silent> <localleader>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <localleader>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <localleader>d  :<C-u>CocList diagnostics<cr>
 " Show commands.
 nnoremap <silent> <localleader>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
@@ -604,6 +624,9 @@ autocmd FileType rust nnoremap <leader>R :CocCommand rust-analyzer.run<CR>
 " {{{
 
 call clipper#set_invocation('nc -U ~/.clipper.sock')
+
+" Copy current file path
+nnoremap <Leader>P :let @0=expand('%') <Bar> :Clip<CR> :echo expand('%')<CR>
 
 " }}}
 " vim-sandwhich
