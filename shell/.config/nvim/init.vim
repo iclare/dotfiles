@@ -238,6 +238,28 @@ nnoremap <LocalLeader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
 " Autocmds
 " {{{
 
+function! s:IclareVimTest()
+  if expand('%:e') == 'vim'
+    let testfile = printf('%s/%s.vader', expand('%:p:h'),
+          \ tr(expand('%:p:h:t'), '-', '_'))
+    if !filereadable(testfile)
+      echoerr 'File does not exist: '. testfile
+      return
+    endif
+    source %
+    execute 'Vader' testfile
+  else
+    let sourcefile = printf('%s/%s.vim', expand('%:p:h'),
+          \ tr(expand('%:p:h:t'), '-', '_'))
+    if !filereadable(sourcefile)
+      echoerr 'File does not exist: '. sourcefile
+      return
+    endif
+    execute 'source' sourcefile
+    Vader
+  endif
+endfunction
+
 function! s:IclareAutocmds()
   augroup IclareAutocmds
     autocmd!
@@ -258,6 +280,8 @@ function! s:IclareAutocmds()
     " Save on focus loss
     autocmd FocusLost * :wa
 
+    autocmd BufRead *.{vader,vim}
+          \ command! -buffer Vt call s:IclareVimTest()
   augroup END
 endfunction
 
