@@ -698,12 +698,6 @@ map _ <Plug>(expand_region_shrink)
 map - <Plug>(operator-replace)
 
 " }}}
-" vim-sneak
-" {{{
-
-let g:sneak#s_next = 1
-
-" }}}
 " dsf.vim
 " {{{
 
