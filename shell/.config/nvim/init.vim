@@ -229,7 +229,7 @@ nnoremap <silent> <Leader>zz :call IclareSubstitute('\s\+$', '', '')<CR>
 nnoremap <Leader>p :echo expand('%')<CR>
 
 " Close all but the current window
-nnoremap <Leader>o :only<CR>
+nnoremap <Leader>O :only<CR>
 
 " Edit an adjacent file
 nnoremap <LocalLeader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
