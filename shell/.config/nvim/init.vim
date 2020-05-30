@@ -168,7 +168,7 @@ set wildignore+=*.o                   " patterns to ignore during file-navigatio
 set wildmenu                          " show options as list when switching buffers etc
 set wildmode=longest:full,full        " shell-like autocomplete to unambiguous portion
 
-set shell=/bin/zsh                    " use zsh as default shell
+set shell=$SHELL                      " use zsh as default shell
 
 " }}}
 " Mappings
