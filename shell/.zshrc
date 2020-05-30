@@ -59,9 +59,6 @@ fi
 
 fpath=($HOME/.zsh/completions $fpath)
 
-autoload -U compinit
-compinit -u
-
 # Make completion:
 # - Try exact (case-sensitive) match first.
 # - Then fall back to case-insensitive.
@@ -474,3 +471,9 @@ eval "$(nodenv init -)"
 # ripgrep
 export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
+#
+# Init completion
+#
+
+autoload -U compinit
+compinit -u
