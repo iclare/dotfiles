@@ -1,4 +1,6 @@
-*
-!.gitignore
-!extensions
-!ultisnips
+/*
+!/.gitignore
+!/extensions/
+!/extension/*
+!/ultisnips/
+!/ultisnips/*
