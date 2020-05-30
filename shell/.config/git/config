@@ -1,3 +1,12 @@
+[alias]
+	amend = commit --amend -v
+	br = branch
+	ci = commit -v
+	co = checkout
+	pa = add -p
+	st = status
+	wc = whatchanged
+
 [branch]
 	autosetupmerge = always
 	autosetuprebase = local
