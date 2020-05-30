@@ -32,8 +32,8 @@ else
 endif
 set belloff=all                       " never ring the bell for any reason
 
-" Highlight up to 255 columns
-" let &l:colorcolumn='+' . join(range(0, 254), ',+')
+" Margin highlight after 100 columns
+let &l:colorcolumn=join(range(100, 254), ',')
 
 set cursorline                        " highlight current line
 set diffopt+=foldcolumn:0             " don't show fold column in diff view
