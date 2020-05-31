@@ -578,7 +578,7 @@ nmap ]g <Plug>(coc-git-nextchunk)
 nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap gC <Plug>(coc-git-commit)
-nmap <leader>U :CocCommand git.chunkUndo
+nmap <localleader>u :CocCommand git.chunkUndo<cr>
 
 " }}}
 " coc-yank
