@@ -222,7 +222,7 @@ autoload -U select-word-style
 select-word-style bash # only alphanumeric chars are considered WORDCHARS
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 
 # NOTE: must come after select-word-style.
