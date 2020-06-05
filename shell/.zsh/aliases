@@ -8,7 +8,7 @@ alias jd=jump
 alias l='ls -la'
 alias prettyjson='python -m json.tool'
 alias r='rg -p'
-alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
+alias serve='python -m http.server' # optional arg: port (defaults to 8000)
 alias t=tmux
 alias v=vim
 
