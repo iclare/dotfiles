@@ -209,7 +209,7 @@ function! IclareClearRegisters() abort
     call setreg(l:reg, [])
   endfor
 endfunction
-nnoremap <Leader>cr :call IclareClearRegisters()<CR>
+nnoremap <localleader>C :call IclareClearRegisters()<CR>
 
 function! IclareSubstitute(pattern, replacement, flags) abort
   let l:number=1
@@ -491,7 +491,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>R <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>F  <Plug>(coc-format-selected)
@@ -539,12 +539,11 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
 " Mappings using CoCList:
 " Show all lists
 nnoremap <silent> <localleader>a  :<C-u>CocList<cr>
 " Show all diagnostics.
-nnoremap <silent> <localleader>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
 " Show commands.
 nnoremap <silent> <localleader>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
