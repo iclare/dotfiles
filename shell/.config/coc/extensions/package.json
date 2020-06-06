@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "coc-actions": ">=1.4.0",
     "coc-diagnostic": ">=0.2.8",
     "coc-explorer": ">=0.7.7",
     "coc-git": ">=1.7.13",

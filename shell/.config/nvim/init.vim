@@ -301,9 +301,7 @@ Plug 'kana/vim-operator-user'
 Plug 'kana/vim-repeat'
 Plug 'kana/vim-textobj-user'
 Plug 'kshenoy/vim-signature'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'liuchengxu/vista.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'simnalamburt/vim-mundo'
@@ -340,40 +338,6 @@ vnoremap <silent> <leader>      :<c-u>WhichKeyVisual '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey       '\'<CR>
 vnoremap <silent> <localleader> :<c-u>WhichKeyVisual '\'<CR>
 
-" }}}
-" vim-clap
-" {{{
-
-nnoremap <leader>c :Clap command<cr>
-nnoremap <leader>h :Clap help_tags<cr>
-nnoremap <leader>j :Clap jumps<cr>
-nnoremap <leader>l :Clap<cr>
-nnoremap <leader>m :Clap history<cr>
-nnoremap <leader>r :Clap grep2 --hidden<cr>
-nnoremap <leader>t :Clap files --hidden<cr>
-
-" }}}
-" vista.vim
-" {{{
-
-" How each level is indented and what to prepend.
-" This could make the display more compact or more spacious.
-" e.g., more compact: ["▸ ", ""]
-" Note: this option only works the LSP executives, doesn't work for `:Vista ctags`.
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-
-" Executive used when opening vista sidebar without specifying it.
-" See all the avaliable executives via `:echo g:vista#executives`.
-let g:vista_default_executive = 'coc'
-
-" To enable fzf's preview window set g:vista_fzf_preview.
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-let g:vista_fzf_preview = ['right:50%']
-
-" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
-let g:vista#renderer#enable_icon = 1
-
-nnoremap <leader>o :Vista!!<CR>
 
 " }}}
 " editorconfig-vim
@@ -532,30 +496,26 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
-nnoremap <leader>F :Format<CR>
+nnoremap <localleader>f :Format<CR>
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
 " Mappings using CoCList:
-" Show all lists
-nnoremap <silent> <localleader>a  :<C-u>CocList<cr>
-" Show all diagnostics.
+nnoremap <silent> <leader>C  :<C-u>CocList vimcommands<cr>
+nnoremap <silent> <leader>a  :<C-u>CocList actions<cr>
+nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
 nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
-" Show commands.
-nnoremap <silent> <localleader>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <localleader>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <localleader>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <localleader>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <localleader>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <localleader>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>g  :<C-u>CocList grep<cr>
+nnoremap <silent> <leader>h  :<C-u>CocList helptags<cr>
+nnoremap <silent> <leader>l  :<C-u>CocList<cr>
+nnoremap <silent> <leader>m  :<C-u>CocList mru<cr>
+nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>t  :<C-u>CocList files<cr>
 
 " To get correct comment highlighting in json
 autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -616,17 +576,6 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
-
-" }}}
-" coc-actions
-" {{{
-
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " }}}
 " coc-explorer
