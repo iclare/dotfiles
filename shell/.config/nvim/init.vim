@@ -209,7 +209,7 @@ function! IclareClearRegisters() abort
     call setreg(l:reg, [])
   endfor
 endfunction
-nnoremap <localleader>C :call IclareClearRegisters()<CR>
+nnoremap <localleader>c :call IclareClearRegisters()<CR>
 
 function! IclareSubstitute(pattern, replacement, flags) abort
   let l:number=1
@@ -218,7 +218,7 @@ function! IclareSubstitute(pattern, replacement, flags) abort
     let l:number=l:number + 1
   endfor
 endfunction
-nnoremap <silent> <Leader>zz :call IclareSubstitute('\s\+$', '', '')<CR>
+nnoremap <silent> <Leader>Z :call IclareSubstitute('\s\+$', '', '')<CR>
 
 " Show current file path
 nnoremap <Leader>p :echo expand('%')<CR>
@@ -455,10 +455,10 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>R <Plug>(coc-rename)
+nmap <leader>r <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>F  <Plug>(coc-format-selected)
+xmap <leader>f  <Plug>(coc-format-selected)
 
 augroup auformat
   autocmd!
@@ -468,35 +468,12 @@ augroup auformat
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>Qf <Plug>(coc-fix-current)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap iF <Plug>(coc-funcobj-i)
-omap iF <Plug>(coc-funcobj-i)
-xmap aF <Plug>(coc-funcobj-a)
-omap aF <Plug>(coc-funcobj-a)
-xmap iC <Plug>(coc-classobj-i)
-omap iC <Plug>(coc-classobj-i)
-xmap aC <Plug>(coc-classobj-a)
-omap aC <Plug>(coc-classobj-a)
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+nmap <localleader>f <Plug>(coc-fix-current)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
-nnoremap <localleader>f :Format<CR>
+nnoremap <leader>f :Format<CR>
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -536,8 +513,8 @@ nmap ]g <Plug>(coc-git-nextchunk)
 " show chunk diff at current position
 nmap gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
-nmap gC <Plug>(coc-git-commit)
-nmap <localleader>u :CocCommand git.chunkUndo<cr>
+nmap gc <Plug>(coc-git-commit)
+nmap <leader>U :CocCommand git.chunkUndo<cr>
 
 " }}}
 " coc-yank
@@ -587,7 +564,7 @@ map <leader>e :CocCommand explorer<CR>
 " coc-rust-analyzer
 " {{{
 
-autocmd FileType rust nnoremap <leader>R :CocCommand rust-analyzer.run<CR>
+autocmd FileType rust nnoremap <localleader>r :CocCommand rust-analyzer.run<CR>
 
 " }}}
 " vim-clipper
