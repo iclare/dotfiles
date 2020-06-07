@@ -141,5 +141,5 @@ compctl -f -K _jump_complete jump
 #   subtree '*.js|*.ts'
 #
 function subtree() {
-  tree -a --prune -P "$@"
+  tree -C -a --prune -P "$@"
 }
