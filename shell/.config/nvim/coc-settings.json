@@ -4,5 +4,6 @@
     "sh": "shellcheck"
   },
   "session.directory": "~/.config/coc/sessions",
-  "explorer.icon.enableNerdfont": true
+  "explorer.icon.enableNerdfont": true,
+  "coc.preferences.formatOnType": true
 }

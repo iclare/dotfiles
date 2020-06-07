@@ -566,6 +566,13 @@ map <leader>e :CocCommand explorer<CR>
 autocmd FileType rust nnoremap <localleader>r :CocCommand rust-analyzer.run<CR>
 
 " }}}
+" coc-pairs
+" {{{
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" }}}
 " vim-clipper
 " {{{
 
