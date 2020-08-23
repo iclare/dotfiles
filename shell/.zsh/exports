@@ -47,6 +47,5 @@ export CLICOLOR=true
 
 export GPG_TTY=$(tty)
 
-export PATH=$PATH:/usr/local/opt/riscv-gnu-toolchain/bin
-
 export PATH=$PATH:~/code/WebKit/Tools/Scripts
+export PATH=$PATH:/usr/local/opt/llvm/bin/llvm-symbolizer
