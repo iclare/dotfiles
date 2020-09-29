@@ -93,7 +93,7 @@ set relativenumber                    " show relative numbers in gutter
 set scrolloff=5                       " start scrolling 5 lines before edge of viewport
 set shell=sh                          " shell to use for `!`, `:!`, `system()` etc.
 set noshiftround                      " don't always indent by multiple of shiftwidth
-set shiftwidth=2                      " spaces per tab (when shifting)
+set shiftwidth=4                      " spaces per tab (when shifting)
 set shortmess+=A                      " ignore annoying swapfile messages
 set shortmess+=I                      " no splash screen
 set shortmess+=O                      " file-read message overwrites previous
