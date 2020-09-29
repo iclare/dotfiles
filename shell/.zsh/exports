@@ -48,3 +48,5 @@ export CLICOLOR=true
 export GPG_TTY=$(tty)
 
 export PATH=$PATH:~/code/WebKit/Tools/Scripts
+
+export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"
