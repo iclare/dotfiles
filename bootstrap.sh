@@ -43,6 +43,7 @@ case "$_uname" in
     brew install ccache
     brew install cppcheck
     brew install iwyu
+    brew install ninja
 
     stow -v -R -t ~ shell
 
