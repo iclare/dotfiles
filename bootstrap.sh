@@ -34,7 +34,16 @@ case "$_uname" in
     brew install pyenv
     brew install nodenv
     brew install watchman
+
+    brew cask install cmake
     brew install llvm
+    brew install conan
+    brew install doxygen
+    brew install graphviz
+    brew install ccache
+    brew install cppcheck
+    brew install iwyu
+
     stow -v -R -t ~ shell
 
     tic -o ~/share/terminfo terminfo/tmux-256color.terminfo
