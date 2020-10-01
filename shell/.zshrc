@@ -300,6 +300,11 @@ stty -ixon
 export PATH=$PATH:$HOME/.zsh/bin
 export PATH="/usr/local/sbin:$PATH"
 
+if [ "$(uname)" = "Darwin" ]; then
+  export PATH=$PATH:$HOME/.zsh/bin-darwin
+fi
+
+
 #
 # Hooks
 #
